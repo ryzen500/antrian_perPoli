@@ -1,0 +1,41 @@
+WITH LastQueue AS (
+    SELECT 
+        panggilantrian,
+        rm.ruangan_id,
+        rm.ruangan_singkatan,
+        t.no_urutantri,
+        rm.ruangan_nama,
+        pm.gelardepan,
+        pm.nama_pegawai,
+        COALESCE(gm.gelarbelakang_nama, '') AS gelarbelakang_nama,
+        t.no_pendaftaran,
+        t.tgl_pendaftaran,
+        ROW_NUMBER() OVER (PARTITION BY t.ruangan_id ORDER BY t.no_urutantri::integer DESC) AS row_num
+    FROM 
+        pendaftaran_t t
+    JOIN 
+        ruangan_m rm ON rm.ruangan_id = t.ruangan_id 
+    JOIN 
+        pegawai_m  pm ON pm.pegawai_id = t.pegawai_id 
+    JOIN 
+        gelarbelakang_m  gm ON gm.gelarbelakang_id = pm.gelarbelakang_id 
+    JOIN 
+        layarruangan_m lr ON lr.ruangan_id = t.ruangan_id AND lr.layarantrian_id = 95
+    WHERE  
+        t.panggilantrian IS TRUE
+)
+SELECT 
+    panggilantrian,
+    ruangan_id
+    ruangan_singkatan,
+    no_urutantri,
+    ruangan_nama,
+    gelardepan,
+    nama_pegawai,
+    gelarbelakang_nama,
+    no_pendaftaran,
+    tgl_pendaftaran
+FROM 
+    LastQueue
+WHERE 
+    row_num = 1;
