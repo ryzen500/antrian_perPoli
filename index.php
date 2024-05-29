@@ -151,10 +151,37 @@
             }
 
             .no-antrian {
-                font-size: 5.5vw;
-                line-height: 6vw;
+            font-size: 14.5vw;
+            line-height: 6vw;
+            text-align: center;
+        }
+        .pantriantengah {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        @media (max-width: 768px) {
+            /* Adjustments for tablets */
+            .no-antrian {
+                font-size: 14vw;
+                line-height: 7vw;
             }
-
+        }
+        @media (max-width: 480px) {
+            /* Adjustments for small screens (e.g., smartphones) */
+            .no-antrian {
+                font-size: 16vw;
+                line-height: 8vw;
+            }
+        }
+        @media (max-width: 320px) {
+            /* Adjustments for very small screens */
+            .no-antrian {
+                font-size: 18vw;
+                line-height: 9vw;
+            }
+        }
             .pasien-deskripsi {
                 /*font-size: 70%;*/
                 width: 100%;
@@ -386,43 +413,49 @@
         </div> -->
 
         <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 statistik" id="kotak1" style="background-color:none; padding: 0 5px;">
+            <div class="row">
+                <div class="col-md-12 statistik" id="kotak1" style="background-color:none; padding: 0 5px;">
 
-            <div class="clear"></div>
-            <div class="col-md-12" style="padding: 0 5px;">
-                <div class="col-md-12" style="padding: 0;" ada-data="tidak">
-                    <div id="ruangan_512" class="antrian">
-                        <div style="font-size:2vw; color:white; font-family:oswald; font-weight: bold;" class="col-md-12 ruangan1 loket-nama" id="pasien-deskripsi_0">
-                            <div class="col-md-12" style="font-size:4vw; text-align:center"> <span id="nama_ruangan"></span></div>
-                            <div class="col-md-12 pasien-deskripsi mt-12" style="padding-bottom: 8px;"><span id="gelardepan"></span> <span id="nama_pegawai"></span> <span id="gelarbelakang_nama"></span></div>
-                        </div>
-                        <div class="col-md-4 pantriantengah">
-                            <div class="col-md-12 no-antrian" ><span id="ruangan_singkatan"></span>-<span id="no_antri"></span> </div>
-                        </div>
-                        <div class="col-md-4 ruangan" id="ruangan_nama_0">
-                            <div class="col-md-12 dokter" style="font-size:4vw;padding-left: 0; padding-right: 0;"><span id="no_rekam_medik"></span></div>
+                    <div class="clear"></div>
+                    <div class="col-md-12" style="padding: 0 5px;">
+                        <div class="col-md-12" style="padding: 0;" ada-data="tidak">
+                            <div id="ruangan_512" class="antrian">
+                                <div style="font-size:2vw; color:white; font-family:oswald; font-weight: bold;" class="col-md-12 ruangan1 loket-nama" id="pasien-deskripsi_0">
+                                    <div class="col-md-12" style="font-size:4vw; text-align:center"> <span id="nama_ruangan"></span></div>
+                                    <div class="col-md-12 pasien-deskripsi mt-12" style="padding-bottom: 8px;"><span id="gelardepan"></span> <span id="nama_pegawai"></span> <span id="gelarbelakang_nama"></span></div>
+                                </div>
+                                <div class="col-md-4 pantriantengah">
+                                    <div class="no-antrian">
+
+                                        <div>
+                                            <span id="ruangan_singkatan"></span>-<span id="no_antri"></span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 ruangan" id="ruangan_nama_0">
+                                    <div class="col-md-12 dokter" style="font-size:4vw;padding-left: 0; padding-right: 0;"><span id="no_rekam_medik"></span></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-12 block-footer-antrian">
-            <div id="footerAntrian">
-                <marquee direction="left" scrollamount="10" id="textrunning">
-                    RS William Booth Surabaya - <label style="font-family: 'Brush Script MT', cursive; font-size: 40px; color: #fff;">“Melayani Dengan KASIH”.</label>
-                </marquee>
+            <div class="row">
+                <div class="col-md-12 block-footer-antrian">
+                    <div id="footerAntrian">
+                        <marquee direction="left" scrollamount="10" id="textrunning">
+                            RS William Booth Surabaya - <label style="font-family: 'Brush Script MT', cursive; font-size: 40px; color: #fff;">“Melayani Dengan KASIH”.</label>
+                        </marquee>
+                    </div>
+                    <div id="footerClock">
+                        <div id="clock"></div>
+                    </div>
+                </div>
             </div>
-            <div id="footerClock">
-                <div id="clock"></div>
-            </div>
-        </div>
-    </div>
 
-</div>
+        </div>
 
         <script type="text/javascript">
             const urutkanRuanganAntrian = () => {
@@ -625,8 +658,8 @@
                 $.ajax({
                     type: 'POST',
                     url: 'antrianPoli.php',
-                    data:{
-                        ruangan_id : ruangan_id
+                    data: {
+                        ruangan_id: ruangan_id
                     },
                     dataType: "json",
                     success: function(data) {
@@ -661,7 +694,7 @@
                 });
             }
 
-            
+
             /**
              * set div antrian
              * @param {type} obj
@@ -745,7 +778,7 @@
              * @param {type} param */
             $(document).ready(function() {
 
-                var ruangan_id= '<?php echo $_GET['ruangan_id']; ?>';
+                var ruangan_id = '<?php echo $_GET['ruangan_id']; ?>';
                 console.log("-_-");
                 urutkanRuanganAntrian();
                 setAntrians(ruangan_id);
@@ -760,9 +793,9 @@
                 socket = io.connect(chatServer + ':' + chatPort);
 
                 console.log(socket);
-                 socket.emit('subscribe', 'antrian');
-               
-               socket.on('antrian', function(data) {
+                socket.emit('subscribe', 'antrian');
+
+                socket.on('antrian', function(data) {
                     console.log("data", data.antrian_id);
                     setAntrians(ruangan_id);
                 });
