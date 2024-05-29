@@ -621,12 +621,12 @@
              * set semua antrian 
              * @param {type} antrian_id
              * @returns {undefined} */
-            async function setAntrians() {
+            async function setAntrians(ruangan_id) {
                 $.ajax({
-                    type: 'GET',
+                    type: 'POST',
                     url: 'antrianPoli.php',
                     data:{
-                        ruangan_id: <?php echo $_GET['ruangan_id'];  ?>
+                        ruangan_id : ruangan_id
                     },
                     dataType: "json",
                     success: function(data) {
@@ -745,29 +745,31 @@
              * @param {type} param */
             $(document).ready(function() {
 
+                var ruangan_id= '<?php echo $_GET['ruangan_id']; ?>';
                 console.log("-_-");
                 urutkanRuanganAntrian();
+                setAntrians(ruangan_id);
                 //        resetPosisi($(".no-antrian-container:first"))
                 //setAntriansFarmasi('');        
-                // var chatServer = '192.168.214.222';
+                var chatServer = '192.168.214.222';
 
                 // <!-- var chatServer = '192.168.214.222'; -->
-            //     var chatServer = 'http://localhost';
+                // var chatServer = 'http://localhost';
 
-            //     var chatPort = '3333';
-            //     socket = io.connect(chatServer + ':' + chatPort);
+                var chatPort = '3333';
+                socket = io.connect(chatServer + ':' + chatPort);
 
-            //     console.log(socket);
-            //      socket.emit('subscribe', 'antrian');
+                console.log(socket);
+                 socket.emit('subscribe', 'antrian');
                
-            //    socket.on('antrian', function(data) {
-            //         console.log("data", data.antrian_id);
-            //         setAntrians();
-            //     });
+               socket.on('antrian', function(data) {
+                    console.log("data", data.antrian_id);
+                    setAntrians(ruangan_id);
+                });
 
-                setInterval(() => {
-                    setAntrians();
-                }, 1000);
+                // setInterval(() => {
+                //     setAntrians();
+                // }, 1000);
                 //DINONAKTIF KAN KARENA BERAT JIKA DI EKSEKUSI DI SMART TV BOX (TARAKAN) >> setInterval(function(){reloadHalaman();},1000);
 
                 // setJenisSuaraAntrian("http://192.168.214.223/ihospital-rswb-staging/data/sounds/antrian/mp3/PEREMPUAN/");
@@ -820,9 +822,9 @@
                 // Compose the string for display
 
                 var currentTimeString = currentDate + " " + mon[currentMonth] + " " + currentYear + " - " + currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
-                console.log("current Time", currentTimeString);
+                // console.log("current Time", currentTimeString);
 
-                console.log(currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay);
+                // console.log(currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay);
                 $("#clock").html(currentTimeString);
             }
             $(document).ready(function() {

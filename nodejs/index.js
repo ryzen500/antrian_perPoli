@@ -15,6 +15,7 @@ io.sockets.on('connection', function(socket){
   });
   
   socket.on('send', function(data){
+    console.log("Data", data);
     data.strCurDate = getDateTime();
     //io.sockets.emit('message', data);
     console.log('sending room post', data.conversationID);
