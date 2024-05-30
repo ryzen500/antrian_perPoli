@@ -9,8 +9,18 @@ $password = 's6SpprwyLVqh7kFg';
 try {
     $pdo = new PDO($dsn, $user, $password, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
-    $ruangan_id = $_POST['ruangan_id'];
+    $ip_address = $_POST['ip_address'];
 
+
+    $sql0 = "SELECT * FROM loginpemakai_k WHERE ip_address = :ip_address order by waktuterakhiraktifitas DESC LIMIT 1";
+    $stmt0 = $pdo->prepare($sql0);
+    $stmt0->bindParam(':ip_address', $ip_address, PDO::PARAM_INT);
+    $stmt0->execute();
+
+    $aktivitasLogin = $stmt0->fetch(PDO::FETCH_ASSOC);
+
+
+    $ruangan_id = $aktivitasLogin['ruanganaktifitas'];
     // Query untuk mendapatkan data dari database
     $sql = "
     SELECT pasien.no_rekam_medik,rm.ruangan_singkatan,t.no_urutantri,rm.ruangan_nama,pm.gelardepan,pm.nama_pegawai, COALESCE(gm.gelarbelakang_nama, '') AS gelarbelakang_nama
@@ -20,7 +30,7 @@ try {
     JOIN pasien_m  pasien ON pasien.pasien_id = t.pasien_id 
     JOIN gelarbelakang_m  gm ON gm.gelarbelakang_id = pm.gelarbelakang_id 
     JOIN layarruangan_m lr ON lr.ruangan_id = t.ruangan_id AND lr.layarantrian_id = 95
-    WHERE DATE(t.tgl_pendaftaran) = '".date('Y-m-27')."' 
+    WHERE DATE(t.tgl_pendaftaran) = '".date('Y-m-d')."' 
     AND t.panggilantrian IS TRUE
     AND t.ruangan_id = :ruangan_id
     ORDER BY t.no_urutantri::integer DESC

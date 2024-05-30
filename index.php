@@ -654,12 +654,12 @@
              * set semua antrian 
              * @param {type} antrian_id
              * @returns {undefined} */
-            async function setAntrians(ruangan_id) {
+            async function setAntrians(ip_address) {
                 $.ajax({
                     type: 'POST',
                     url: 'antrianPoli.php',
                     data: {
-                        ruangan_id: ruangan_id
+                        ip_address: ip_address
                     },
                     dataType: "json",
                     success: function(data) {
@@ -778,10 +778,10 @@
              * @param {type} param */
             $(document).ready(function() {
 
-                var ruangan_id = '<?php echo $_GET['ruangan_id']; ?>';
+                var ip_address = '<?php echo $_GET['ip_address']; ?>';
                 console.log("-_-");
                 urutkanRuanganAntrian();
-                setAntrians(ruangan_id);
+                setAntrians(ip_address);
                 //        resetPosisi($(".no-antrian-container:first"))
                 //setAntriansFarmasi('');        
                 var chatServer = '192.168.214.222';
@@ -797,7 +797,7 @@
 
                 socket.on('antrian', function(data) {
                     console.log("data", data.antrian_id);
-                    setAntrians(ruangan_id);
+                    setAntrians(ip_address);
                 });
 
                 // setInterval(() => {
