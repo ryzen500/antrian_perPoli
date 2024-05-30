@@ -20,7 +20,7 @@ try {
     JOIN pasien_m  pasien ON pasien.pasien_id = t.pasien_id 
     JOIN gelarbelakang_m  gm ON gm.gelarbelakang_id = pm.gelarbelakang_id 
     JOIN layarruangan_m lr ON lr.ruangan_id = t.ruangan_id AND lr.layarantrian_id = 95
-    WHERE DATE(t.tgl_pendaftaran) = '".date('Y-m-d')."' 
+    WHERE DATE(t.tgl_pendaftaran) = '".date('Y-m-27')."' 
     AND t.panggilantrian IS TRUE
     AND t.ruangan_id = :ruangan_id
     ORDER BY t.no_urutantri::integer DESC

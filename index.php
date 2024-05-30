@@ -141,47 +141,33 @@
         border-bottom: none;
         border-top:none;
     }*/
-            .no-antrian,
             .pasien-deskripsi,
             .ruangan {
                 color: #fff;
                 text-align: center;
-                font-size: 4vw;
+                font-size: 13.7vw;
                 font-weight: bold;
             }
 
-            .no-antrian {
-            font-size: 14.5vw;
-            line-height: 6vw;
-            text-align: center;
-        }
+            
         .pantriantengah {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
-        @media (max-width: 768px) {
-            /* Adjustments for tablets */
-            .no-antrian {
-                font-size: 14vw;
-                line-height: 7vw;
-            }
-        }
-        @media (max-width: 480px) {
-            /* Adjustments for small screens (e.g., smartphones) */
-            .no-antrian {
-                font-size: 16vw;
-                line-height: 8vw;
-            }
-        }
-        @media (max-width: 320px) {
-            /* Adjustments for very small screens */
-            .no-antrian {
-                font-size: 18vw;
-                line-height: 9vw;
-            }
-        }
+      
+
+
+
+     /* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
             .pasien-deskripsi {
                 /*font-size: 70%;*/
                 width: 100%;
@@ -281,6 +267,22 @@
                 font-weight: bold;
                 text-align: center;
             }
+
+          /* Default font size for large screens (full screen monitor) */
+.no-antrian {
+    font-size: 180px;
+}
+
+/* Font size for medium screens (mini laptop) */
+@media (max-width: 1024px) {
+    .no-antrian {
+        font-size:  83px; 
+    }
+}
+
+
+
+ 
 
             #pantrianbawah {
                 background-color: #2b2e3b;
@@ -427,10 +429,8 @@
                                 <div class="col-md-4 pantriantengah">
                                     <div class="no-antrian">
 
-                                        <div>
-                                            <span id="ruangan_singkatan"></span>-<span id="no_antri"></span>
-
-                                        </div>
+                                        <span id="ruangan_singkatan"></span>-<span id="no_antri"></span>
+                                 
                                     </div>
                                 </div>
                                 <div class="col-md-4 ruangan" id="ruangan_nama_0">
