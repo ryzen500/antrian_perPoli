@@ -2,7 +2,9 @@
 header('Content-Type: application/json');
 
 // Koneksi ke database dan query running
-$dsn = 'pgsql:host=192.168.214.222;port=5121;dbname=db_rswb_simulasi_20221227';
+
+// $dsn = 'pgsql:host=192.168.214.222;port=5121;dbname=db_rswb_simulasi_20221227';
+$dsn = 'pgsql:host=192.168.214.225;port=5121;dbname=db_rswb_running_new';
 $user = 'developer';
 $password = 's6SpprwyLVqh7kFg';
 
@@ -21,9 +23,11 @@ try {
 
 
     $ruangan_id = $aktivitasLogin['ruanganaktifitas'];
+
+
     // Query untuk mendapatkan data dari database
     $sql = "
-    SELECT pasien.no_rekam_medik,rm.ruangan_singkatan,t.no_urutantri,rm.ruangan_nama,pm.gelardepan,pm.nama_pegawai, COALESCE(gm.gelarbelakang_nama, '') AS gelarbelakang_nama
+    SELECT pasien.no_rekam_medik, CONCAT(rm.ruangan_singkatan, '-', t.no_urutantri) AS ruangan_singkatan,t.no_urutantri,rm.ruangan_nama,pm.gelardepan,pm.nama_pegawai, COALESCE(gm.gelarbelakang_nama, '') AS gelarbelakang_nama
     FROM pendaftaran_t t
     JOIN ruangan_m rm ON rm.ruangan_id = t.ruangan_id 
     JOIN pegawai_m  pm ON pm.pegawai_id = t.pegawai_id 
@@ -42,6 +46,8 @@ try {
 
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
+
+    // var_dump(date('Y-m-30'));die;
     if ($data === false) {
         // Query kedua jika data pertama tidak ditemukan
         $sql2 = "SELECT * FROM ruangan_m WHERE ruangan_id = :ruangan_id";
@@ -56,7 +62,7 @@ try {
             echo json_encode(['error' => 'Data tidak ditemukan.']);
         } else {
             $result = [
-                'ruangan_singkatan' => $ruanganData['ruangan_singkatan'],
+                'ruangan_singkatan' => $ruanganData['ruangan_singkatan'] . '-' . '000',
                 'no_urutantri'=>'000',
                 'ruangan_nama'=>'-',
                 'no_rekam_medik'=>'-'

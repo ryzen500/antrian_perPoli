@@ -107,14 +107,14 @@
             .ruangan {
                 width: 100%;
                 height: 4.8vw;
-                padding: 2px;
+                padding: 10px;
                 background-color: #2b2e3b;
             }
 
             .ruangan1 {
                 background-color: #2b2e3b;
                 /* height: 2.75vw; */
-                /* padding:90px; */
+                padding:90px;
                 width: 100%;
                 margin-top: 10px;
             }
@@ -146,13 +146,13 @@
             .ruangan {
                 color: #fff;
                 text-align: center;
-                font-size: 3.7vw;
+                font-size: 13.7vw;
                 font-weight: bold;
             }
 
             
         .pantriantengah {
-            /* display: flex; */
+            display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -172,7 +172,7 @@
             .pasien-deskripsi {
                 /*font-size: 70%;*/
                 width: 100%;
-                font-size: 5vw;
+                font-size: 6vw;
                 -moz-border-radius: 0 0 5px 5px;
                 -webkit-border-radius: 0 0 5px 5px;
                 border-radius: 0 0 5px 5px;
@@ -260,33 +260,25 @@
 
             .pantriantengah {
                 width: 100%;
-                height: 40vw;
+                height: 42vw;
                 /* padding: 300px; */
-                padding:40px 0 0 0;
+                padding:50px;
                 background-color: #18476d;
                 color: #fff;
                 font-family: oswald;
                 font-weight: bold;
                 text-align: center;
-                align-self: center;
             }
 
           /* Default font size for large screens (full screen monitor) */
 .no-antrian {
-    /* font-size: 200px;
-     */
-
-     font-size: 190.5pt;
-    color: white;
-    font-family: oswald;
-    font-weight: bold;
-    padding-top: 25px;
+    font-size: 200px;
 }
 
 /* Font size for medium screens (mini laptop) */
 @media (max-width: 1024px) {
     .no-antrian {
-        font-size:  167pt; 
+        font-size:  200px; 
     }
 }
 
@@ -387,6 +379,42 @@
             }
         </style>
         <input readonly="readonly" class="realtime" type="hidden" value="" name="jamsekarang" id="jamsekarang" />
+        <!-- <div class="row">
+            <div class="col-sm-12 statistik" id="kotak1" style="background-color:none; padding: 0 5px;">
+
+                <div class="clear"></div>
+                <div class="col-sm-12" style="padding: 0 5px;">
+                    <div class="col-sm-12" style="padding: 0;" ada-data="tidak">
+                        <div id="ruangan_512" class="antrian">
+                            <div style="font-size:2vw; color:white; font-family:oswald; font-weight: bold;" class="col-sm-12 ruangan1 loket-nama" id="pasien-deskripsi_0">
+                                <div class="col-sm-12" style="font-size:4vw; text-align:center"> <span id="nama_ruangan"></span></div>
+                                <div class="col-sm-12 pasien-deskripsi mt-12" style="padding-bottom: 8px;"><span id="gelardepan"></span> <span id="nama_pegawai"></span> <span id="gelarbelakang_nama"></span></div>
+                            </div>
+                            <div class="col-xs-4 pantriantengah">
+                                <div class="col-sm-12 no-antrian" style="font-size:9.5vw;"><span id="ruangan_singkatan"></span>-<span id="no_antri"></span> </div>
+                            </div>
+                            <div class="col-xs-4 ruangan" id="ruangan_nama_0">
+                                <div class="col-sm-12 dokter" style="font-size:4vw;padding-left: 0; padding-right: 0;">100343839</div>
+
+                            </div>
+                            <input class="span3" onkeyup="return $(this).focusNextInputField(event);" name="ANInfokunjunganrjV[pendaftaran_id]" id="ANInfokunjunganrjV_pendaftaran_id" type="hidden" /><input class="span3" onkeyup="return $(this).focusNextInputField(event);" name="ANInfokunjunganrjV[ruangan_id]" id="ANInfokunjunganrjV_ruangan_id" type="hidden" /><input class="span3" onkeyup="return $(this).focusNextInputField(event);" name="ANInfokunjunganrjV[carabayar_id]" id="ANInfokunjunganrjV_carabayar_id" type="hidden" /><input class="span3" onkeyup="return $(this).focusNextInputField(event);" name="ANInfokunjunganrjV[antrian_id]" id="ANInfokunjunganrjV_antrian_id" type="hidden" /><input class="span3" onkeyup="return $(this).focusNextInputField(event);" name="ANInfokunjunganrjV[pegawai_id]" id="ANInfokunjunganrjV_pegawai_id" type="hidden" /><input readonly="readonly" class="span3" onkeyup="return $(this).focusNextInputField(event);" maxlength="50" name="ANInfokunjunganrjV[ruangan_nama]" id="ANInfokunjunganrjV_ruangan_nama" type="hidden" /><input readonly="readonly" class="span3" onkeyup="return $(this).focusNextInputField(event);" maxlength="50" name="ANInfokunjunganrjV[ruangan_singkatan]" id="ANInfokunjunganrjV_ruangan_singkatan" type="hidden" /><input readonly="readonly" class="span3" onkeyup="return $(this).focusNextInputField(event);" name="ANInfokunjunganrjV[tgl_pendaftaran]" id="ANInfokunjunganrjV_tgl_pendaftaran" type="hidden" /><input readonly="readonly" class="span3" onkeyup="return $(this).focusNextInputField(event);" maxlength="6" name="ANInfokunjunganrjV[no_pendaftaran]" id="ANInfokunjunganrjV_no_pendaftaran" type="hidden" /><input readonly="readonly" class="span3" onkeyup="return $(this).focusNextInputField(event);" maxlength="50" name="ANInfokunjunganrjV[no_urutantri]" id="ANInfokunjunganrjV_no_urutantri" type="hidden" /><input readonly="readonly" class="span3" onkeyup="return $(this).focusNextInputField(event);" maxlength="50" name="ANInfokunjunganrjV[no_rekam_medik]" id="ANInfokunjunganrjV_no_rekam_medik" type="hidden" /><input readonly="readonly" class="span3" onkeyup="return $(this).focusNextInputField(event);" maxlength="50" name="ANInfokunjunganrjV[namadepan]" id="ANInfokunjunganrjV_namadepan" type="hidden" /><input readonly="readonly" class="span3" onkeyup="return $(this).focusNextInputField(event);" maxlength="50" name="ANInfokunjunganrjV[nama_pasien]" id="ANInfokunjunganrjV_nama_pasien" type="hidden" /><input readonly="readonly" class="span3" onkeyup="return $(this).focusNextInputField(event);" maxlength="50" name="ANInfokunjunganrjV[gelardepan]" id="ANInfokunjunganrjV_gelardepan" type="hidden" /><input readonly="readonly" class="span3" onkeyup="return $(this).focusNextInputField(event);" maxlength="50" name="ANInfokunjunganrjV[nama_pegawai]" id="ANInfokunjunganrjV_nama_pegawai" type="hidden" /><input readonly="readonly" class="span3" onkeyup="return $(this).focusNextInputField(event);" maxlength="50" name="ANInfokunjunganrjV[gelarbelakang_nama]" id="ANInfokunjunganrjV_gelarbelakang_nama" type="hidden" /><input readonly="readonly" class="span3" onkeyup="return $(this).focusNextInputField(event);" maxlength="50" name="ANInfokunjunganrjV[statuspasien]" id="ANInfokunjunganrjV_statuspasien" type="hidden" /><input readonly="readonly" class="span3" onkeyup="return $(this).focusNextInputField(event);" maxlength="50" name="ANInfokunjunganrjV[panggilantrian]" id="ANInfokunjunganrjV_panggilantrian" type="hidden" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="block-footer-antrian">
+            <div id="footerAntrian">
+                <marquee direction="left" scrollamount="10" id="textrunning">
+                    RS William Booth Surabaya - <label style="font-family: 'Brush Script MT', cursive; font-size: 40px; color: #fff;">“Melayani Dengan KASIH”.</label>
+                </marquee>
+            </div>
+            <div id="footerClock">
+                <div id="clock"></div>
+            </div>
+        </div> -->
 
         <div class="container-fluid">
             <div class="row">
@@ -396,25 +424,19 @@
                     <div class="col-md-12" style="padding: 0 5px;">
                         <div class="col-md-12" style="padding: 0;" ada-data="tidak">
                             <div id="ruangan_512" class="antrian">
-                                <div style="font-size:25vw; color:white; font-family:oswald; font-weight: bold;" class="col-md-12 ruangan1 loket-nama" id="pasien-deskripsi_0">
-                                    <div class="col-md-12" style="font-size:6vw; text-align:center"> <p id="nama_ruangan" style="font-size: 39.5pt;color:white;font-family:oswald;font-weight: bold;padding-top: 25px;"></p></div>
-                                    <div class="col-md-12 pasien-deskripsi mt-12" style="padding-bottom: 8px;"><span id="gelardepan"></span> <span id="nama_pegawai"></span> <span id="gelarbelakang_nama"></span></div>
+                                <div style="font-size:2vw; color:white; font-family:oswald; font-weight: bold;" class="col-md-12 ruangan1 loket-nama" id="pasien-deskripsi_0">
+                                    <div class="col-md-12" style="font-size:8vw; text-align:center"> <span id="nama_ruangan"></span></div>
+                                    <div class="col-md-12 pasien-deskripsi mt-12" style="padding-bottom: 10px; padding-top:40px;"><span id="gelardepan"></span> <span id="nama_pegawai"></span> <span id="gelarbelakang_nama"></span></div>
                                 </div>
-                               
                                 <div class="col-md-4 pantriantengah">
-                               
+                                    <div class="no-antrian">
 
-                        
-                                <span style="
-     font-size: 187pt;
-    color: white;
-    font-family: oswald;
-    font-weight: bold;
-    padding-top: 25px;"  id="ruangan_singkatan"></span>
-
+                                        <span id="ruangan_singkatan"></span>-<span id="no_antri"></span>
+                                 
+                                    </div>
                                 </div>
                                 <div class="col-md-4 ruangan" id="ruangan_nama_0">
-                                    <div class="col-md-12 dokter" style="font-size:5vw;padding-left: 0; padding-right: 0;"><span id="no_rekam_medik"></span></div>
+                                    <div class="col-md-12 dokter" style="font-size:4vw;padding-left: 0; padding-right: 0;"><span id="no_rekam_medik"></span></div>
                                 </div>
                             </div>
                         </div>
@@ -648,7 +670,7 @@
                         console.log("Hai");
 
                         $("#ruangan_singkatan").text(data.ruangan_singkatan);
-                        // $("#no_antri").text(data.no_urutantri);
+                        $("#no_antri").text(data.no_urutantri);
                         $("#nama_ruangan").text(data.ruangan_nama);
                         $("#gelardepan").text(data.gelardepan);
                         $("#nama_pegawai").text(data.nama_pegawai);
