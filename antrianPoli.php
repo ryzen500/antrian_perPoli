@@ -28,7 +28,7 @@ try {
 
     // Query untuk mendapatkan data dari database
     $sql = "
-    SELECT pasien.no_rekam_medik, CONCAT(rm.ruangan_singkatan, '-', t.no_urutantri) AS ruangan_singkatan,t.no_urutantri,rm.ruangan_nama,pm.gelardepan,pm.nama_pegawai, COALESCE(gm.gelarbelakang_nama, '') AS gelarbelakang_nama
+    SELECT pasien.no_rekam_medik, t.update_time, CONCAT(rm.ruangan_singkatan, '-', t.no_urutantri) AS ruangan_singkatan,t.no_urutantri,rm.ruangan_nama,pm.gelardepan,pm.nama_pegawai, COALESCE(gm.gelarbelakang_nama, '') AS gelarbelakang_nama
     FROM pendaftaran_t t
     LEFT JOIN ruangan_m rm ON rm.ruangan_id = t.ruangan_id 
     LEFT JOIN pegawai_m  pm ON pm.pegawai_id = t.pegawai_id 
@@ -40,7 +40,7 @@ try {
     AND t.panggilantrian IS TRUE
     AND lk.ip_address = '".$ip_address."'
     AND t.ruangan_id = :ruangan_id
-    ORDER BY t.no_urutantri::integer DESC
+    ORDER BY t.update_time DESC
     LIMIT 1";
 
     $stmt = $pdo->prepare($sql);
