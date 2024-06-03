@@ -22,6 +22,7 @@ try {
     $aktivitasLogin = $stmt0->fetch(PDO::FETCH_ASSOC);
 
 
+
     $ruangan_id = $aktivitasLogin['ruanganaktifitas'];
 
 
@@ -31,11 +32,13 @@ try {
     FROM pendaftaran_t t
     LEFT JOIN ruangan_m rm ON rm.ruangan_id = t.ruangan_id 
     LEFT JOIN pegawai_m  pm ON pm.pegawai_id = t.pegawai_id 
+    LEFT JOIN loginpemakai_k  lk ON lk.pegawai_id = t.pegawai_id 
     LEFT JOIN pasien_m  pasien ON pasien.pasien_id = t.pasien_id 
     LEFT JOIN gelarbelakang_m  gm ON gm.gelarbelakang_id = pm.gelarbelakang_id 
     LEFT JOIN layarruangan_m lr ON lr.ruangan_id = t.ruangan_id AND lr.layarantrian_id = 95
     WHERE DATE(t.tgl_pendaftaran) = '".date('Y-m-d')."' 
     AND t.panggilantrian IS TRUE
+    AND lk.ip_address = '".$ip_address."'
     AND t.ruangan_id = :ruangan_id
     ORDER BY t.no_urutantri::integer DESC
     LIMIT 1";
