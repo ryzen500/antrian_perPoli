@@ -29,11 +29,11 @@ try {
     $sql = "
     SELECT pasien.no_rekam_medik, CONCAT(rm.ruangan_singkatan, '-', t.no_urutantri) AS ruangan_singkatan,t.no_urutantri,rm.ruangan_nama,pm.gelardepan,pm.nama_pegawai, COALESCE(gm.gelarbelakang_nama, '') AS gelarbelakang_nama
     FROM pendaftaran_t t
-    JOIN ruangan_m rm ON rm.ruangan_id = t.ruangan_id 
-    JOIN pegawai_m  pm ON pm.pegawai_id = t.pegawai_id 
-    JOIN pasien_m  pasien ON pasien.pasien_id = t.pasien_id 
-    JOIN gelarbelakang_m  gm ON gm.gelarbelakang_id = pm.gelarbelakang_id 
-    JOIN layarruangan_m lr ON lr.ruangan_id = t.ruangan_id AND lr.layarantrian_id = 95
+    LEFT JOIN ruangan_m rm ON rm.ruangan_id = t.ruangan_id 
+    LEFT JOIN pegawai_m  pm ON pm.pegawai_id = t.pegawai_id 
+    LEFT JOIN pasien_m  pasien ON pasien.pasien_id = t.pasien_id 
+    LEFT JOIN gelarbelakang_m  gm ON gm.gelarbelakang_id = pm.gelarbelakang_id 
+    LEFT JOIN layarruangan_m lr ON lr.ruangan_id = t.ruangan_id AND lr.layarantrian_id = 95
     WHERE DATE(t.tgl_pendaftaran) = '".date('Y-m-d')."' 
     AND t.panggilantrian IS TRUE
     AND t.ruangan_id = :ruangan_id
