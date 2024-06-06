@@ -24,5 +24,5 @@ function getClientIp() {
 }
 
 $client_ip = getClientIp();
-// echo 'Client IP address: ' . $client_ip;
+echo 'Client IP address: ' . $client_ip;
 ?>

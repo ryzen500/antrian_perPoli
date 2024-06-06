@@ -3,8 +3,8 @@ header('Content-Type: application/json');
 
 // Koneksi ke database dan query running
 
-// $dsn = 'pgsql:host=192.168.214.222;port=5121;dbname=db_rswb_simulasi_20221227';
-$dsn = 'pgsql:host=192.168.214.225;port=5121;dbname=db_rswb_running_new';
+$dsn = 'pgsql:host=192.168.214.222;port=5121;dbname=db_rswb_simulasi_20221227';
+// $dsn = 'pgsql:host=192.168.214.225;port=5121;dbname=db_rswb_running_new';
 $user = 'developer';
 $password = 's6SpprwyLVqh7kFg';
 
@@ -14,9 +14,8 @@ try {
     $ip_address = $_POST['ip_address'];
 
 
-    $sql0 = "SELECT * FROM loginpemakai_k WHERE ip_address = :ip_address order by waktuterakhiraktifitas DESC LIMIT 1";
+    $sql0 = "SELECT * FROM loginpemakai_k WHERE ip_address = '".$ip_address."' order by waktuterakhiraktifitas DESC LIMIT 1";
     $stmt0 = $pdo->prepare($sql0);
-    $stmt0->bindParam(':ip_address', $ip_address, PDO::PARAM_INT);
     $stmt0->execute();
 
     $aktivitasLogin = $stmt0->fetch(PDO::FETCH_ASSOC);
@@ -25,6 +24,7 @@ try {
 
     $ruangan_id = $aktivitasLogin['ruanganaktifitas'];
 
+    $pegawai_id = $aktivitasLogin['pegawai_id'];
 
     // Query untuk mendapatkan data dari database
     $sql = "
@@ -32,14 +32,13 @@ try {
     FROM pendaftaran_t t
     LEFT JOIN ruangan_m rm ON rm.ruangan_id = t.ruangan_id 
     LEFT JOIN pegawai_m  pm ON pm.pegawai_id = t.pegawai_id 
-    LEFT JOIN loginpemakai_k  lk ON lk.pegawai_id = t.pegawai_id 
     LEFT JOIN pasien_m  pasien ON pasien.pasien_id = t.pasien_id 
     LEFT JOIN gelarbelakang_m  gm ON gm.gelarbelakang_id = pm.gelarbelakang_id 
     LEFT JOIN layarruangan_m lr ON lr.ruangan_id = t.ruangan_id AND lr.layarantrian_id = 95
     WHERE DATE(t.tgl_pendaftaran) = '".date('Y-m-d')."' 
     AND t.panggilantrian IS TRUE
-    AND lk.ip_address = '".$ip_address."'
     AND t.ruangan_id = :ruangan_id
+    AND t.pegawai_id = '".$pegawai_id."'
     ORDER BY t.update_time DESC
     LIMIT 1";
 
