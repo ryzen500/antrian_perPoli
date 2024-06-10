@@ -3,8 +3,8 @@ header('Content-Type: application/json');
 
 // Koneksi ke database dan query running
 
-$dsn = 'pgsql:host=192.168.214.222;port=5121;dbname=db_rswb_simulasi_20221227';
-// $dsn = 'pgsql:host=192.168.214.225;port=5121;dbname=db_rswb_running_new';
+// $dsn = 'pgsql:host=192.168.214.222;port=5121;dbname=db_rswb_simulasi_20221227';
+$dsn = 'pgsql:host=192.168.214.225;port=5121;dbname=db_rswb_running_new';
 $user = 'developer';
 $password = 's6SpprwyLVqh7kFg';
 
