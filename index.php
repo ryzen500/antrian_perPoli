@@ -753,15 +753,33 @@
             //     });
             // }
 
+            function autoReload() {
+                console.log(" Bisa Auto Reload  ");
+
+                if (!sessionStorage.getItem('reloaded')) {
+                console.log(" Reloaded ", sessionStorage.getItem('reloaded'));
+                // Set status reload di sessionStorage
+                sessionStorage.setItem('reloaded', 'true');
+                // Reload halaman
+                location.reload();
+            }
+        }
+
+        // Panggil fungsi autoReload saat halaman dimuat
+        // window.onload = autoReload;
             /**
              * fungsi .ready() harus tetap di bawah
              * @param {type} param */
             $(document).ready(function() {
-
                 var ip_address = '<?php echo $_GET['ip_address']; ?>';
                 console.log("-_-");
                 urutkanRuanganAntrian();
                 setAntrians(ip_address);
+                setInterval(() => {
+                    
+                    autoReload();
+                }, 2000);
+
                 //        resetPosisi($(".no-antrian-container:first"))
                 //setAntriansFarmasi('');        
                 var chatServer = '192.168.214.222';
