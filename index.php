@@ -368,7 +368,42 @@
                 /* Opera 12+ */
                 animation: blinked-container-noantrian 3s infinite;
                 /* IE 10+, Fx 29+ */
+            } 
+
+            .kata_kata{
+                font-size:6vw; text-align:center;
             }
+
+            .dinamis_kata_kata{
+                font-size: 45pt;
+                color:white;
+                font-family:oswald;
+                font-weight: bold;
+                padding-top: 25px;;
+            }
+
+            .ruangan_singkatan {
+
+     font-size: 187pt;
+    color: white;
+    font-family: oswald;
+    font-weight: bold;
+    padding-top: 25px;
+            }
+
+
+/* Media queries untuk ukuran HP (misalnya, layar 600px ke bawah) */
+@media (max-width: 900px) {
+    .dinamis_kata_kata {
+        font-size: 30pt; /* sesuaikan ukuran sesuai kebutuhan */
+        padding-top: 15px; /* sesuaikan padding sesuai kebutuhan */
+    }
+
+    .ruangan_singkatan {
+        font-size: 100pt; /* sesuaikan ukuran sesuai kebutuhan */
+        padding-top: 15px; /* sesuaikan padding sesuai kebutuhan */
+    }
+}
 
 
             @-webkit-keyframes blinked-container-noantrian {
@@ -397,7 +432,7 @@
                         <div class="col-md-12" style="padding: 0;" ada-data="tidak">
                             <div id="ruangan_512" class="antrian">
                                 <div style="font-size:25vw; color:white; font-family:oswald; font-weight: bold;" class="col-md-12 ruangan1 loket-nama" id="pasien-deskripsi_0">
-                                    <div class="col-md-12" style="font-size:6vw; text-align:center"> <p id="nama_ruangan" style="font-size: 39.5pt;color:white;font-family:oswald;font-weight: bold;padding-top: 25px;"></p></div>
+                                    <div class="col-md-12 kata_kata" > <p id="nama_ruangan" class="dinamis_kata_kata"></p></div>
                                     <div class="col-md-12 pasien-deskripsi mt-12" style="padding-bottom: 8px;"><span id="gelardepan"></span> <span id="nama_pegawai"></span> <span id="gelarbelakang_nama"></span></div>
                                 </div>
                                
@@ -405,12 +440,7 @@
                                
 
                         
-                                <span style="
-     font-size: 187pt;
-    color: white;
-    font-family: oswald;
-    font-weight: bold;
-    padding-top: 25px;"  id="ruangan_singkatan"></span>
+                                <span class="ruangan_singkatan"  id="ruangan_singkatan"></span>
 
                                 </div>
                                 <div class="col-md-4 ruangan" id="ruangan_nama_0">
@@ -795,7 +825,10 @@
 
                 socket.on('antrian', function(data) {
                     console.log("data", data.antrian_id);
+                    console.log("Reload Kalau diklik dari SIMRS");
+                    location.reload();
                     setAntrians(ip_address);
+
                 });
 
                 // setInterval(() => {

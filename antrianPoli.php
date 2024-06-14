@@ -3,8 +3,8 @@ header('Content-Type: application/json');
 
 // Koneksi ke database dan query running
 
-// $dsn = 'pgsql:host=192.168.214.222;port=5121;dbname=db_rswb_simulasi_20221227';
-$dsn = 'pgsql:host=192.168.214.225;port=5121;dbname=db_rswb_running_new';
+$dsn = 'pgsql:host=192.168.214.222;port=5121;dbname=db_rswb_simulasi_20221227';
+//$dsn = 'pgsql:host=192.168.214.225;port=5121;dbname=db_rswb_running_new';
 $user = 'developer';
 $password = 's6SpprwyLVqh7kFg';
 
@@ -27,18 +27,35 @@ try {
     $pegawai_id = $aktivitasLogin['pegawai_id'];
 
     // Query untuk mendapatkan data dari database
-    $sql = "
+    // $sql = "
+    // SELECT pasien.no_rekam_medik, t.update_time, CONCAT(rm.ruangan_singkatan, '-', t.no_urutantri) AS ruangan_singkatan,t.no_urutantri,rm.ruangan_nama,pm.gelardepan,pm.nama_pegawai, COALESCE(gm.gelarbelakang_nama, '') AS gelarbelakang_nama
+    // FROM pendaftaran_t t
+    // LEFT JOIN ruangan_m rm ON rm.ruangan_id = t.ruangan_id 
+    // LEFT JOIN pegawai_m  pm ON pm.pegawai_id = t.pegawai_id 
+    // LEFT JOIN pasien_m  pasien ON pasien.pasien_id = t.pasien_id 
+    // LEFT JOIN gelarbelakang_m  gm ON gm.gelarbelakang_id = pm.gelarbelakang_id 
+    // LEFT JOIN layarruangan_m lr ON lr.ruangan_id = t.ruangan_id AND lr.layarantrian_id = 95
+    // WHERE DATE(t.tgl_pendaftaran) = '".date('Y-m-d')."' 
+    // AND t.panggilantrian IS TRUE
+    // AND t.ruangan_id = :ruangan_id
+    // AND t.pegawai_id = '".$pegawai_id."'
+    // ORDER BY t.update_time DESC
+    // LIMIT 1";
+
+   $sql = "
     SELECT pasien.no_rekam_medik, t.update_time, CONCAT(rm.ruangan_singkatan, '-', t.no_urutantri) AS ruangan_singkatan,t.no_urutantri,rm.ruangan_nama,pm.gelardepan,pm.nama_pegawai, COALESCE(gm.gelarbelakang_nama, '') AS gelarbelakang_nama
     FROM pendaftaran_t t
-    LEFT JOIN ruangan_m rm ON rm.ruangan_id = t.ruangan_id 
+      LEFT JOIN ruangan_m rm ON rm.ruangan_id = t.ruangan_id 
     LEFT JOIN pegawai_m  pm ON pm.pegawai_id = t.pegawai_id 
+    LEFT JOIN loginpemakai_k lk  ON lk.pegawai_id = pm.pegawai_id 
     LEFT JOIN pasien_m  pasien ON pasien.pasien_id = t.pasien_id 
     LEFT JOIN gelarbelakang_m  gm ON gm.gelarbelakang_id = pm.gelarbelakang_id 
     LEFT JOIN layarruangan_m lr ON lr.ruangan_id = t.ruangan_id AND lr.layarantrian_id = 95
     WHERE DATE(t.tgl_pendaftaran) = '".date('Y-m-d')."' 
+
     AND t.panggilantrian IS TRUE
     AND t.ruangan_id = :ruangan_id
-    AND t.pegawai_id = '".$pegawai_id."'
+    AND lk.ip_address ='".$ip_address."'
     ORDER BY t.update_time DESC
     LIMIT 1";
 
